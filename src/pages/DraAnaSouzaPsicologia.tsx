@@ -1,19 +1,45 @@
-import React from "react";
+import React, { useState } from "react";
 import "./dra-ana-souza-psicologia.css";
 
 const DraAnaSouzaPsicologia: React.FC = () => {
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const closeMenu = () => {
+    setMenuOpen(false);
+  };
+
   return (
     <div className="dra-root">
       <nav className="dra-nav">
-        <div className="dra-nav-logo">Dra. Ana Souza</div>
-        <div className="dra-nav-links">
-          <a href="#servicos">Serviços</a>
-          <a href="#processo">Como funciona</a>
-          <a href="#depoimentos">Depoimentos</a>
+        <div className="dra-nav-inner">
+          <div className="dra-nav-logo">Dra. Ana Souza</div>
+          <button
+            className="dra-nav-toggle"
+            type="button"
+            aria-label="Abrir menu"
+            aria-expanded={menuOpen}
+            onClick={() => setMenuOpen((prev) => !prev)}
+          >
+            ☰
+          </button>
+          <div className={`dra-nav-links ${menuOpen ? "is-open" : ""}`}>
+            <a href="#servicos" onClick={closeMenu}>
+              Serviços
+            </a>
+            <a href="#processo" onClick={closeMenu}>
+              Como funciona
+            </a>
+            <a href="#depoimentos" onClick={closeMenu}>
+              Depoimentos
+            </a>
+            <button className="dra-nav-cta dra-nav-cta-mobile" type="button">
+              Agendar consulta
+            </button>
+          </div>
+          <button className="dra-nav-cta dra-nav-cta-desktop" type="button">
+            Agendar consulta
+          </button>
         </div>
-        <button className="dra-nav-cta" type="button">
-          Agendar consulta
-        </button>
       </nav>
 
       <section className="dra-hero">
